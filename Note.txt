@@ -1,0 +1,152 @@
+﻿1. Char is used for a character type. It is 16 bits, large enough for (nonsurrogate) Unicode characters.-> Char have 2 bytes
+2. Strings Are Immutable (ko chỉnh sửa được)
+3. One way to retrieve text that is entered at the console is to use System.Console.ReadLine()
+4. The data type returned by the System.Console.Read() method is an integer corresponding to the character value read, or –1 if no more characters are available
+5. The practice of placing a value directly into source code is called hardcoding, because changing the values requires recompiling the code. Developers must carefully consider the choice between hardcoding values within their code and retrieving them from an external source, such as a configuration file, so that the values are modifiable without recompiling.
+
+6. The round-trip format specifier, R (or r).
+	Ex: string.Format("{0:R}", 1.618033988749895)
+
+7. In C#, you can use the @ symbol in front of a string to signify that a backslash should not be interpreted as the beginning of an escape sequence.
+8. The using and using static Directives. The using static directive needs to appear at the top of the file.
+9. One way to overcome the discrepancy between platforms is simply to use System.Console.WriteLine() to output a blank line. Another approach, which is almost essential for a new line on multiple platforms when you are not outputting to the console, is to use System.Environment.NewLine.
+10. System.Text.StringBuilder (modifiable)
+
+11. var indicates to the compiler that it should determine the data type from the value that is assigned within the declaration.
+
+12. Value type data is always copied by value, while reference type data is always copied by reference.
+
+13. A key factor when choosing between defining a reference type or a value type is whether the object is logically like an immutable value of fixed size (and therefore possibly a value type), or logically a mutable thing that can be referred to (and therefore likely to be a reference type).
+
+14. To declare variables of value type that can store null, you use the 'nullable modifier', ?.
+
+15. The syntax for a checked block uses the checked keyword.
+
+16. Parse() | Another special type is available for converting one type to the next. This type is System.Convert
+
+17. TryParse() method. This method is very similar to the Parse() method, except that instead of throwing an exception if the conversion fails, the TryParse() method returns false. -> By using TryParse() rather than Parse(), you can avoid throwing exceptions in expected situations.
+
+18. Arrays include additional methods for manipulating the elements withinthe array—for example, Sort(), BinarySearch(), Reverse(), and Clear().
+	-> Notice: System.Array.Clear(arr, firstIndex, secondIndex): This does not remove all items from the array, rather it sets each item to the type’s default value (from firstIndex to secondIndex of arr).
+
+19. Clone array -> using Clone().
+
+20. expression1 ?? expression2 -> If this value (expression1) is null, then use this other value (expression2).
+	More example: x ?? y ?? z  :v
+
+21. Null-Conditional Operator (?.) -> checking for null before invoking a member (prop / method)
+	Example: args?.Length -> The null-conditional operator checks whether the operand (args is null prior to invoking the method or property (Length) =>>>>>>> Avoid using
+
+22. foreach(type variable in collection) { statement }
+
+23. Hints for Visual Editors (#region, #endregion). Callsapce ???
+
+24. To support the simplest of method declarations without the formality of a method body, C# 6.0 introduced expression bodied methods, which are declared using an expression rather than a full method body
+	"Goes to" operator: => 
+	Ex: (static) string GetFullName(string firstName, string lastName) => $"{firstName} {lastName}";
+	As such, their use should be limited to the simplest of method implementations—generally expressible on a single line.
+
+25. Declaration and implementation appear together in the same file.
+
+26. The using directive also allows aliasing a namespace or type -> to avoid code ambiguity
+	Ex: using CountDownTimer = System.Timers.Timer;	// at the top of file
+
+27. Reference Parameters (ref) - passed by reference. -> KEYWORD ref
+	Ex: void swap(ref string a, ref string b){ string temp = a; a = b; b = temp; }. It'll swap original values of a and b.
+
+28. A method that takes a reference to a variable intends to write to the variable, but not to read from it. In such cases, clearly it could be safe to pass an uninitialized local variable by reference. To achieve this, code needs to decorate parameter types with the keyword out.
+	Ex: bool TryGetPhoneButton(char character, out char button){/*statement*/}
+
+29. Parameter Arrays (params).
+	Guide:
+		1. Places params immediately before the LAST parameter in the method declaration
+		2. Declares the LAST parameter
+
+	Ex: void DoStuff(int a, params int[] listInteger) {/*statement*/}
+
+30. Optional method
+	Ex: void Method(int a; int b = 1);
+
+31. Named Arguments.
+	Ex:
+		Main() method: Display("Sant", middleName : "Jur", lastName : "Lee");
+				Display("Raph");
+				Display("Leo", lastName : "Lee");
+
+		Method: Display(string firstName, string middleName = default(string), string lastName = default(string)){}
+
+32. Exception handling: In fact, it is possible to have a try block with a finally block and no catch block.
+	Because all classes ultimately derive from object, a catch block with no data type must appear last.
+	TRY - CATCH - FINALLY
+
+33. Classes - THE GARBAGE COLLECTOR (JUST LIKE JAVA)
+The garbage collector is responsible for the automatic de-allocation. It determines which objects are no longer referenced by other active objects and then de-allocates the memory for those objects.
+
+34. this KEYWORD.
+
+35. FileStream object and the FileMode (append, create, createNew, open, openOrCreate, Truncate). We have StreamWriter and StreamReader to write and read a file from FileStream, just like Java. 
+	For ex:
+		StreamWriter sw = new StreamWriter(new FileStream("myFile.file", FileMode.Create));
+		sw.Close(); // must be closed
+
+36.  Five access modifiers are available: public, private, protected, internal, and protected internal
+
+37. If no access modifier is placed on a class member, the declaration defaults to private. In other words, members are private by default and programmers need to specify explicitly that a member is to be public.
+
+38. Recognizing the frequency of this type of pattern, the C# designers provided explicit syntax for it. This syntax is called a property: (I dunno if they have only set and get or not, but the example below will show set and get only)
+
+	Example:
+		private string _firstName;		// origin prop
+		public string firstName			// property prop, origin prop' mask
+		{
+			get
+			{
+				return _firstName;	
+			}
+
+			set
+			{
+				_firstName = value; 	// value is special keyword for this scenario
+			}
+	
+		}
+
+
+39. Automatically Implemented Properties (shorthand - tốc ký)
+With previous example, we also declare like this:
+		public string firstName { get; set; }
+	
+	More ex: 
+		public string lastName { get; set; } = "Raphael";  // init value (C# 6.0 and higher)
+
+	// I'm confused. Example above, this is public access modifier.
+
+40. The nameof operator takes an identifier, like the value variable, and returns a string representation of that name—in this case, "value".
+
+41. Read-Only and Write-Only Properties
+	public int value { get; }
+
+42. Specifying an access modifier on the getter or setter
+	Example: 
+
+		private string _firstName;		// origin prop
+		public string firstName			// property prop, origin prop' mask
+		{
+			get
+			{
+				return _firstName;	
+			}
+
+			private set			// access modifier, not on both
+			{
+				_firstName = value; 	// value is special keyword for this scenario
+			}
+	
+		}
+
+43. Properties and Method Calls Not Allowed As ref or out Parameter Values
+44. Finalizer: To define what happens when an object is destroyed, C# provides the finalizer construct (///)
+45. Constructor Chaining: Calling Another Constructor Using this
+	Ex:
+		public Me(string firstName, string lastName) {/*statement*/}
+		public Me(string firstName, string lastName, int age) : this(firstName, lastName) {/*statement*/}
