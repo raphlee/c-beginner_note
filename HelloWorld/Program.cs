@@ -13,14 +13,38 @@ using CountDownTimer = System.Timers.Timer;
 
 namespace HelloWorld
 {
-    class Program
+    /*partial*/ class Program // partial class allow the splitting of a class definition across multiple files
     {
+        #region partial
+        /*partial void PartialMethod() { }*/ // partial method must be return void
+
+        #endregion partial
+
         // access modifiers: 5 types   
         public string name;
         private object feature;
         protected int value;
         internal bool isTrue;
         protected internal float fee;
+
+        public static int nextId;  // static field
+
+        /**
+         *  Unlike with instance fields, if no initialization for a static field is provided, the static field will automatically be assigned its default value (0,
+            null, false, and so on)—the equivalent of default(T), where T is the name
+            of the type. As a result, it will be possible to access the static field even if it
+            has never been explicitly assigned in the C# code.
+            
+            Nonstatic fields, or instance fields, provide a new storage location for
+            each object to which they belong. In contrast, static fields don’t belong to
+            the instance, but rather to the class itself. As a result, you access a static field
+            from outside a class via the class name. 
+         * 
+         */
+
+        const float MATH_PI = 3.141529f;
+
+        public readonly int _myId;
 
         // declaring a property
         private string _firstName;  // need to declare first, then declare property: set and get func
@@ -52,16 +76,19 @@ namespace HelloWorld
             }
         }
 
-        public string title { get; set; } = "employee"; // not attually stored, be carefull. value will assign to origin prop???
+        public string title { get; set; } = "employee"; // not attually stored, be careful. value will assign to origin prop???
 
-        public object readOnly { get; } // be carefull
-
-        
+        public object readOnly { get; } // be careful
 
 
         static void Main(string[] args)
         {
             #region Hello 
+
+            Program.nextId = 100;
+
+            NestedClass nested = new NestedClass();
+            nested.nestedDoThing();
 
             HelloWorld.Program myWorld = new HelloWorld.Program();
             myWorld.Control();
@@ -145,6 +172,8 @@ namespace HelloWorld
             {
 
             }
+
+            Console.ReadKey(); // wait for me
         }
 
         // methods using in Main() must be a static methods.
@@ -220,5 +249,17 @@ namespace HelloWorld
             System.Console.WriteLine(this.firstName);      // call the firstName's getter, ----------------------------------
                                                            // to see more information: point cusor to the firstName
         } 
+
+
+        // nested Class
+        private class NestedClass
+        {
+            public void nestedDoThing()
+            {
+                Console.WriteLine("Nested Class do thing");
+            }
+        }
+
+
     }
 }
