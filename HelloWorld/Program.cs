@@ -52,7 +52,7 @@ namespace HelloWorld
             }
         }
 
-        public string title { get; set; } = "employee"; // not attually stored, be carefull. value will assign to origin prop
+        public string title { get; set; } = "employee"; // not attually stored, be carefull. value will assign to origin prop???
 
         public object readOnly { get; } // be carefull
 
