@@ -150,3 +150,70 @@ With previous example, we also declare like this:
 	Ex:
 		public Me(string firstName, string lastName) {/*statement*/}
 		public Me(string firstName, string lastName, int age) : this(firstName, lastName) {/*statement*/}
+
+46. Unlike many of the languages that came before it, C# does not have global variables or global functions. All fields and methods in C# appear within the context of a class. The equivalent of a global field or function within the realm of C# is a static field or function. There is no functional difference between global variables/functions and C# static fields/methods, except that static fields/methods can include access modifiers, such as private, that can limit the access and provide better encapsulation.
+
+Unlike with instance fields, if no initialization for a static field is provided, the static field will automatically be assigned its default value (0, null, false, and so on)—the equivalent of default(T), where T is the name of the type. As a result, it will be possible to access the static field even if it has never been explicitly assigned in the C# code.
+
+Nonstatic fields, or instance fields, provide a new storage location for each object to which they belong. In contrast, static fields don’t belong to the instance, but rather to the class itself. As a result, you access a static field from outside a class via the class name.
+
+'this' keyword is invalid inside a static method.
+
+47. Static Constructor: no parameters are allowed on static constructors.
+
+--
+Just like property, we have static property as well.
+
+48. Static Class
+The static keyword on a class provides two facilities (điều kiện thuận lợi)
+- First, it prevents a programmer from writing code that instantiates the static class. 
+- Second, it prevents the declaration of any instance fields or methods within the class
+
+49. const 
+Constant fields are static automatically
+
+50. readonly
+
+51. Partial classes (lớp cục bộ): allow the splitting of a class definition across multiple files
+	File1: ex1.cs
+		partial class Program {}
+
+	File2: ex2.cs
+		partial class Program {}
+
+52. Partial method: Any partial method must return void.
+	Ex: partial void OnMethod(){}
+
+53. Single Inheritance
+
+54. Sealed classes include the sealed modifier, and the result is that they cannot be derived from
+
+55. Virtual: The base class must mark each member for which it allows overriding as virtual. If public or protected members do not include the virtual modifier, subclasses will not be able to override those members.
+
+Virtual methods should not include critical code because such methods may never be called if the derived class overrides them
+
+56. 'new' and 'sealed' modifier for the inheritance method (be careful)
+
+57. Just like 'super' in Java, C# have 'base' keyword to call directly base class.
+
+58. Abtrast Class, can not be initialized (instance) | Polymorphism (đa hình): “Poly” means “many” and “morph” means “form,” so polymorphism refers to the fact that there are multiple implementations of the same signature.
+
+59. In Java, all object refer to Object Class, so does C#. 
+	C#:							All Classes Derive from System.Object
+All object have System.Object's members like: Equals, GetHashCode, GetType, ToString, ...
+
+60. 'is' operator to check type
+
+61. 'as' operator. The as operator goes one step further: It attempts a conversion to a particular data type and assigns null if the source type is not inherently (within the inheritance chain) of the target type. This strategy is significant because it avoids the exception that could result from casting.
+
+62. Interface: The base class specifier (if there is one) must come first, but otherwise order is not significant. Classes can implement multiple interfaces, but may derive directly from only one base class.
+
+
+// Generic Classes
+63. ArrayList
+64. IComperable (like Comperator in Java, supported int CompareTo(Object o) function to compare, -1: less than, 0: equal, 1 greater.
+
+65. IComparer: int Compare(Object o1, Object o2){}
+66. Queue and Stack (see you)
+
+67. Dictionary: HASHTABLE
