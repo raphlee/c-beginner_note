@@ -130,7 +130,7 @@ namespace HelloWorld
 
             string[] languages = { "C", "C++", "C#", "Java", "VB" ,"Python" };
 
-            System.Array.IndexOf(languages, "C#");
+            System.Array.IndexOf(languages, "C#");          // Generic
             System.Array.Sort(languages); // and 17 more methods, ctrl + space to see
 
             int[] numbers = new int[7];
