@@ -93,6 +93,38 @@ namespace Stuff
     }
 
 
+    class DelegateSample
+    {
+        public delegate int HandlerMe(bool isTrue, float valueFloat);       // marked is delegate func
+
+        public void doDelegate(HandlerMe handler)
+        {
+            bool isTrue = true;
+            float valueFloat = 1.0f;
+            int handle = handler(isTrue, valueFloat);
+
+            Console.WriteLine(handle);
+
+        }
+
+        public static int HandlerOne(bool isTrue, float valueFloat)        // func must be have same params as delegate func to treated
+        {
+            if (isTrue)
+                return 1;
+            return (int) valueFloat;
+        }
+        
+
+        public static int HandlerTwo(bool isTrue, float valueFloat)
+        {
+            return 2;
+        }
+
+
+    }
+
+
+
     class OverloadingOperator
     {
         //....
@@ -149,6 +181,14 @@ namespace Stuff
         {
             StringBuilder strBuilder = new StringBuilder("Man in the middle");
 
+            DelegateSample delegateSample = new DelegateSample();
+            DelegateSample.HandlerMe handler = new DelegateSample.HandlerMe(DelegateSample.HandlerOne);
+
+            delegateSample.doDelegate(handler);
+
+            delegateSample.doDelegate(DelegateSample.HandlerTwo);
+
+            Console.ReadKey();
             
         }
     }

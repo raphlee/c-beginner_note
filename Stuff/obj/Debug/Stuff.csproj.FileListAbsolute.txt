@@ -1,1 +1,6 @@
 E:\King\C\C#\Basic Solution\HelloWorld\Stuff\bin\Debug\Stuff.exe.config
+E:\King\C\C#\Basic Solution\HelloWorld\Stuff\bin\Debug\Stuff.exe
+E:\King\C\C#\Basic Solution\HelloWorld\Stuff\bin\Debug\Stuff.pdb
+E:\King\C\C#\Basic Solution\HelloWorld\Stuff\obj\Debug\Stuff.csprojResolveAssemblyReference.cache
+E:\King\C\C#\Basic Solution\HelloWorld\Stuff\obj\Debug\Stuff.exe
+E:\King\C\C#\Basic Solution\HelloWorld\Stuff\obj\Debug\Stuff.pdb
