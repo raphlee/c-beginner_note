@@ -1,0 +1,5 @@
+E:\King\C\C#\Basic Solution\HelloWorld\IntermediateScripting\bin\Debug\IntermediateScripting.exe.config
+E:\King\C\C#\Basic Solution\HelloWorld\IntermediateScripting\bin\Debug\IntermediateScripting.exe
+E:\King\C\C#\Basic Solution\HelloWorld\IntermediateScripting\bin\Debug\IntermediateScripting.pdb
+E:\King\C\C#\Basic Solution\HelloWorld\IntermediateScripting\obj\Debug\IntermediateScripting.exe
+E:\King\C\C#\Basic Solution\HelloWorld\IntermediateScripting\obj\Debug\IntermediateScripting.pdb

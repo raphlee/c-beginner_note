@@ -46,9 +46,15 @@ namespace LazyGirlWithExtension
 
             // 2nd param is Comparision<T>: 
             Array.Sort(IntArr, (x, y) => x.CompareTo(y));
+
+            //BubbleSort(IntArr, (first, second) => first < second); ???
         }
     }
 
+
+    // the System.Action family of delegates is for referring to void-returning methods
+
+    // the System.Func family of delegates is for referring to returning methods, like below
     class DelegateFuncYo
     {
         // Mix with Lambda func
@@ -57,18 +63,23 @@ namespace LazyGirlWithExtension
 
         // We can use it many times
 
-                       // name of Func // parametter-list (Lambda func))
-        Func<string, int> stringLength = s => s.Length; // here, T is string; TResult is type int
+        // name of Func // parametter-list (Lambda func))
+        Func<string, int> stringLength = (s) => s.Length; // here, T is string; TResult is type int
 
         // multiply float and int, and result is float
         Func<float, int, float> multiply = (x, y) => x * y;
 
-        void DoThing()
+        public void DoThing()
         {
             Console.WriteLine(stringLength("Man of the world"));
 
             float result = multiply(1.3f, 22);
+            Console.WriteLine(result);
         }
+
+
+        // Action, still use Lambda function, return void
+        Action<int> DoWorkWithAction = (x) => Console.WriteLine(x);
     }
 
     // NOTICE:  instance method is higher prior than extension method.
@@ -93,6 +104,12 @@ namespace LazyGirlWithExtension
 
             Program program = new Program();
             program.DoProgramMe();      // print Extension
+
+            LambdaExpressionYo lambda = new LambdaExpressionYo();
+            lambda.DoLambda();
+
+            DelegateFuncYo delegateYo = new DelegateFuncYo();
+            delegateYo.DoThing();
 
             Console.ReadKey();
         }

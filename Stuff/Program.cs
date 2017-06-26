@@ -91,6 +91,29 @@ namespace Stuff
         {
             Angle newMe = AxisX.MoveOut(0, 0, 0);
         }
+
+        // Anonymous Types;
+        // Cannot convert to other
+        // Immutable
+        public void AnonymousType()
+        {
+            var paten1 =
+                new
+                {
+                    Title = "The Little Prince",
+                    YearOfPublication = "1788"
+                };
+
+            var paten2 =
+                new
+                {
+                    Title = "Photograph",
+                    YearOfPublication = "1877"
+                };
+
+            paten1 = paten2;   // run-time error here, cannot convert
+            //paten1.Title = "Another Prince";  // cannot change
+        }
     }
 
 
