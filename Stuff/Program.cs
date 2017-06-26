@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Stuff
 {
 
@@ -172,7 +173,42 @@ namespace Stuff
             // unboxing
             number = (int)thing;
         }
-}
+    }
+
+
+    class MyGeneric : IComparable<MyGeneric>        // now you can use function Sort or smt
+    {
+        List<int> myList;
+
+        public void ListExample()
+        {
+            myList.Add(100);
+
+            Dictionary<int, string> myDict = new Dictionary<int, string>();
+
+            myDict.Add(143, "I love you");
+
+            Console.WriteLine(myDict[143]);
+
+            Stack<float> myStack = new Stack<float>();
+            myStack.Push(1.11f);
+
+            string value = null;
+            if(myDict.TryGetValue(112, out value))
+            {
+                // 112 is exist on Dict and return data to value
+            } else
+            {
+                // failure
+            }
+        }
+
+        public int CompareTo(MyGeneric other)
+        {
+            if (other == null) return -1;
+            return 1;
+        }
+    }
 
 
     class Program

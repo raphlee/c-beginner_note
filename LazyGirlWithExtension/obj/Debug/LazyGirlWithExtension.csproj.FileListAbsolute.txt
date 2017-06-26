@@ -1,0 +1,6 @@
+E:\King\C\C#\Basic Solution\HelloWorld\LazyGirlWithExtension\bin\Debug\LazyGirlWithExtension.exe.config
+E:\King\C\C#\Basic Solution\HelloWorld\LazyGirlWithExtension\bin\Debug\LazyGirlWithExtension.exe
+E:\King\C\C#\Basic Solution\HelloWorld\LazyGirlWithExtension\bin\Debug\LazyGirlWithExtension.pdb
+E:\King\C\C#\Basic Solution\HelloWorld\LazyGirlWithExtension\obj\Debug\LazyGirlWithExtension.csprojResolveAssemblyReference.cache
+E:\King\C\C#\Basic Solution\HelloWorld\LazyGirlWithExtension\obj\Debug\LazyGirlWithExtension.exe
+E:\King\C\C#\Basic Solution\HelloWorld\LazyGirlWithExtension\obj\Debug\LazyGirlWithExtension.pdb
