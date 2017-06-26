@@ -89,7 +89,8 @@ The garbage collector is responsible for the automatic de-allocation. It determi
 		StreamWriter sw = new StreamWriter(new FileStream("myFile.file", FileMode.Create));
 		sw.Close(); // must be closed
 
-36.  Five access modifiers are available: public, private, protected, internal, and protected internal
+36.  Five access modifiers are available: public, private, protected, internal, and protected internal.
+	By default, a class without any access modifier is defined as internal.
 
 37. If no access modifier is placed on a class member, the declaration defaults to private. In other words, members are private by default and programmers need to specify explicitly that a member is to be public.
 
@@ -210,6 +211,9 @@ All object have System.Object's members like: Equals, GetHashCode, GetType, ToSt
 
 
 // Generic Classes
+
+#head:		using System.Collection.Generic;
+
 63. ArrayList
 64. IComperable (like Comperator in Java, supported int CompareTo(Object o) function to compare, -1: less than, 0: equal, 1 greater.
 
@@ -217,3 +221,156 @@ All object have System.Object's members like: Equals, GetHashCode, GetType, ToSt
 66. Queue and Stack (see you)
 
 67. Dictionary: HASHTABLE
+
+68. Operator Overloading. 
+	NOT SUPPORTED THESE OPERATOR: x.y, f(x), new, typeof, default, checked, unchecked, delegate, is, as, =, and =>
+
+	BINARY OPERATOR: (+, -, *, /, %, &, |, ^, <<, >>)
+
+	Combining Assignment with Binary Operators: (+=, -=, *=, /=, %=, &=, …)
+	
+	Conditional Logical Operators (&&, ||)
+
+	Unary Operators (+, -, !, ~, ++, --, true, false)
+
+69. NOTICE: Two variables never refer to the same storage location (unless one or both are 'out' or 'ref' parameters)
+
+70. DO NOT create value types that consume more than 16 bytes of memory.
+
+71. Reference types:
+	A reference type variable, therefore, has two storage locations associated with it: the storage location directly associated with the variable, and the storage location referred to by the reference that is the value stored in the variable.
+
+	This is why the guideline for value types is to ensure that they are never more than 16 bytes or thereabouts; if a value type is more than four times as expensive to copy as a reference, it probably should simply be a reference type.
+
+72. Struct: readonly, automatically implemented properties
+
+73. Enum values are actually implemented as nothing more than integer constants. By default, the first enum value is given the value 0, and each subsequent entry increases by 1. However, you can assign explicit values to enums.
+
+	If you decide to use bit flag enums, the declaration of the enum should be marked with FlagsAttribute.
+	Ex:
+		[Flags]
+    		public enum FileAttributes
+    		{
+        		ReadOnly =      1 << 0,     // 0000 0000 0000 0001
+        		Hidden   =      1 << 1,     // 0000 0000 0000 0010
+
+        		Moreover = ReadOnly | Hidden		//  Join Enum
+    		}
+
+	To join enum values, you use a bitwise OR operator. 					|
+	To test for the existence of a particular bit you use the bitwise AND operator		&
+
+74. Organize the complexity by breaking programs into multiple parts. 
+To do this, developers move portions of a program into separate compiled units called class libraries or, simply, libraries. Programs then reference and rely on class libraries to provide parts of their functionality. The power of this concept is that two programs can rely on the same class library, thereby sharing the functionality of that class library across both programs and reducing the total amount of code needed.
+
+75. Using namespace. Nested namespace
+
+	Ex: 
+	namespace Min {
+		namespace World {
+			// My class
+		}
+	}
+
+	or
+	
+	namespace Min.World {
+		// My class
+	}
+
+76. XML comments
+
+77. Delegate (BE CAREFUL)
+
+78. Lazy Initialization (Cool)
+
+78. Extension Method
+
+// Vietnamese infor source
+Extension method giúp bạn tạo thêm các phương thức cho một lớp mà không cần thừa kế lại lớp đó. Với tính năng này, thậm chí khi đối tượng của bạn là null, bạn vẫn có thể thực hiện các phương thức extension của đối tượng đó một cách an toàn.
+
+Các quy tắc khi định nghĩa và sử dụng extension method
+
+–          Lớp chứa extension method phải là static
+
+–          Extension method cũng phải là một phương  thức static
+
+–          Tham số đầu tiên của extension method xác định kiểu của đối tượng được sử dụng (extension method sẽ thêm vào lớp của đối tượng đó) với từ khóa 'this'. Tham số này sẽ được bỏ qua khi bạn gọi extension method.
+
+Một điểm cơ bản cần chú ý là khi sử dụng extension method: bởi vì chúng không thực sự nằm trong các lớp mà chúng được thêm vào, nên bạn cần chắc chắn rằng các extension method được khai báo để có thể truy xuất được tại nơi mà bạn cần sử dụng như modifier, namespace.
+
+Example:
+
+    public static class ExtensionForProgram
+    {
+        // all class and method you wanna add to A, must be static (public ?)
+        // method must be had 'this' keyword to 1st param, this param must be A type.
+        public static void DoProgramMe(this Program Integer)        // it must be a reference data type
+        {
+            Console.WriteLine("Extension");
+        }
+    }
+
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            var lazyObject = new Lazy<object>(() => { return LoadData(); });
+            Console.WriteLine(lazyObject);
+            Console.WriteLine(lazyObject.Value);
+
+
+            Program program = new Program();
+            program.DoProgramMe();      // print Extension
+
+            Console.ReadKey();
+        }
+
+        static string LoadData()
+        {
+            Console.WriteLine("Start loading");
+            return "This is a 'HUGE' data";
+        }
+    }
+
+
+79. Anonymous method
+Anonymous method (tạm dịch là phương thức vô danh) là phương thức không có tên được khai báo với từ khóa 'delegate'. Anonymous method cho phép bạn tạo ra các hành động cho một cho delegate với cách viết inline.
+
+Ex:
+
+	    int[] IntArr = {1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            // from delegate ... -> Anonymous Method (Pridicate<T> match)
+            int[] OddArr = Array.FindAll(IntArr, delegate (int value)
+            {
+                return value % 2 == 1;
+            });
+
+
+
+80. Delegate Func
+
+Func cho phép khai báo và tạo ra các dạng delegate với số lượng tham số và kiểu trả về khác nhau, tương tự như khi bạn tạo ra một phương thức.
+
+Func được dùng chủ yếu để tạo và lưu trữ một anonymous method ngắn gọn bằng lambda expression và được sử dụng như những phương thức thông thường.
+
+Ex:
+	// Mix with Lambda func
+        // Syntax: Func<T, T, ..., TResult>
+
+
+        // We can use it many times
+
+                       // name of Func // parametter-list (Lambda func))
+        Func<string, int> stringLength = s => s.Length; // here, T is string; TResult is type int
+
+        // multiply float and int, and result is float
+        Func<float, int, float> multiply = (x, y) => x * y;
+
+        void DoThing()
+        {
+            Console.WriteLine(stringLength("Man of the world"));
+
+            float result = multiply(1.3f, 22);
+        } 
